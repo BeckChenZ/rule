@@ -1,0 +1,5 @@
+DOMAIN,aq.qq.com,DIRECT
+DOMAIN-SUFFIX,ptlogin2.qq.com,DIRECT
+DOMAIN,ssl.ptlogin2.qq.com,DIRECT
+DOMAIN,ui.ptlogin2.qq.com,DIRECT
+DOMAIN,recaptcha.net,DIRECT
