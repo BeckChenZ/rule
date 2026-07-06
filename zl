@@ -1,3 +1,4 @@
 #废了废了无用无用
 DOMAIN-SUFFIX,dpdns.org
 DOMAIN-SUFFIX,klplay.top
+IP-CIDR,107.173.156.0/24,no-resolve
