@@ -6,3 +6,4 @@ DOMAIN-SUFFIX,313445.xyz
 DOMAIN-SUFFIX,ciallo.party
 DOMAIN-SUFFIX,yuanshen.help
 DOMAIN-SUFFIX,zzm.li
+IP-CIDR,107.173.156.0/24,no-resolve
