@@ -3,3 +3,4 @@ DOMAIN-SUFFIX,dpdns.org
 DOMAIN-SUFFIX,klplay.top
 IP-CIDR,107.173.156.0/24,no-resolve
 DOMAIN-SUFFIX,vipdc.covh.eu.org
+DOMAIN-SUFFIX,raw.githubusercontent
