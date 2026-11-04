@@ -11,4 +11,4 @@ DOMAIN-SUFFIX,upc.zztfly.com,REJECT
 DOMAIN-SUFFIX,push.it.10086.cn,REJECT
 
 [Script]
-10086-splash-clean = type=http-response,pattern=^https?:\/\/(client|apm|h5)\.(app\.coc|bj)\.10086\.cn\/,requires-body=1,max-size=1048576,script-path=https://raw.githubusercontent.com/BeckChenZ/rule/refs/heads/main/10086.10086.js,debug=1
+10086-splash-clean = type=http-response,pattern=^https?:\/\/(client|apm|h5)\.(app\.coc|bj)\.10086\.cn\/,requires-body=1,max-size=1048576,script-path=https://raw.githubusercontent.com/BeckChenZ/rule/refs/heads/main/10086.js,debug=1
