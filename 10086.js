@@ -2,18 +2,36 @@
   try{
     const b=$response&&$response.body; if(!b) return $done({});
     let d; try{d=JSON.parse(b)}catch(e){return $done({})}
-    const AD=['splash','splashad','splashads','splashinfo','splashconfig','ad','ads','adinfo','adlist','admap','addata','addatas','popup','popups','popupad','popupconfig','dialog','dialogad','banner','banners','bannerad','float','floatad','floatingad','intro','introduce','guide','boot','launch','welcome','recommendad','marketing','advert','advertise','advertisement','cachecleanup'];
-    const T=['showtime','displaytime','duration','delay','interval','countdown','expire','expiretime','validtime','starttime','endtime','effectstarttime','effectiveendtime'];
-    const hint=o=>o&&typeof o==='object'&&['adtype','adid','creativeid','material','landing','deeplink','clickurl','imageurl','videourl'].some(k=>k in o);
-    const isk=k=>k&&AD.some(x=>k.toLowerCase().includes(x));
-    (function w(n){
+
+    // 命中即删的键（模糊匹配）
+    const AD=['splash','ad','ads','popup','pop','banner','float','dialog','boot','launch',
+              'recommend','market','activity','advert','intro','guide','welcome','cache'];
+    const isAd=k=>k&&AD.some(x=>k.toLowerCase().includes(x));
+
+    // 广告物料特征字段
+    const HINT=['adType','adId','creativeId','material','landing','deeplink','clickUrl','imageUrl','videoUrl','linkUrl','jumpUrl'];
+
+    function walk(n){
       if(!n||typeof n!=='object')return;
-      if(Array.isArray(n)){for(let i=n.length-1;i>=0;i--){hint(n[i])?n.splice(i,1):w(n[i])}return}
-      for(const k in n){const v=n[k];
-        if(isk(k)){n[k]=Array.isArray(v)?[]:(v&&typeof v==='object'?{}:'');continue}
-        if(T.includes(k.toLowerCase())&&typeof v==='number')n[k]=0;
-        if(v&&typeof v==='object')w(v)}
-    })(d);
+      if(Array.isArray(n)){
+        for(let i=n.length-1;i>=0;i--){
+          const it=n[i];
+          if(it&&typeof it==='object'&&HINT.some(h=>h in it)) n.splice(i,1);
+          else walk(it);
+        }
+        return;
+      }
+      for(const k in n){
+        const v=n[k];
+        if(isAd(k)){
+          n[k]=Array.isArray(v)?[]:(v&&typeof v==='object'?{}:'');
+          continue;
+        }
+        if(v&&typeof v==='object') walk(v);
+      }
+    }
+    walk(d);
     $done({body:JSON.stringify(d)});
   }catch(e){$done({})}
 })();
+
