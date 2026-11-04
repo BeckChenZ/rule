@@ -1,0 +1,14 @@
+#!name=中国移动去开屏广告
+#!desc=GitHub远程脚本清洗10086 App开屏/弹窗广告
+#!system=ios
+
+[MITM]
+hostname = %APPEND% client.app.coc.10086.cn, apm.app.coc.10086.cn, h5.bj.10086.cn, h.app.coc.10086.cn
+
+[Rule]
+DOMAIN-SUFFIX,jiguang.coc.10086.cn,REJECT
+DOMAIN-SUFFIX,upc.zztfly.com,REJECT
+DOMAIN-SUFFIX,push.it.10086.cn,REJECT
+
+[Script]
+10086-splash-clean = type=http-response,pattern=^https?:\/\/(client|apm|h5)\.(app\.coc|bj)\.10086\.cn\/,requires-body=1,max-size=1048576,script-path=https://raw.githubusercontent.com/你的用户名/surge-10086/main/scripts/10086-clean.js,debug=1
